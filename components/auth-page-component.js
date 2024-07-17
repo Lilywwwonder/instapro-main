@@ -1,4 +1,5 @@
 import { loginUser, registerUser } from "../api.js";
+import { sanitizeHtml } from "../helpers.js";
 import { renderHeaderComponent } from "./header-component.js";
 import { renderUploadImageComponent } from "./upload-image-component.js";
 
@@ -52,7 +53,7 @@ export function renderAuthPageComponent({ appEl, setUser }) {
       </div>    
 `;
 
-    appEl.innerHTML = appHtml;
+    appEl.innerHTML = appHtml; // надо заменить как пост пей
 
     // Не вызываем перерендер, чтобы не сбрасывалась заполненная форма
     // Точечно обновляем кусочек дом дерева

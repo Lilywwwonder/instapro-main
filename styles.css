@@ -93,6 +93,36 @@
   cursor: pointer;
 }
 
+/* внесла правки по кнопке корзины -------------------------------------------------------------------------------------------------*/
+.bin {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.delete-button img {
+  border: none;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  display: block;
+  outline: none;
+  cursor: pointer;
+  padding-right: 8px;
+  /* filter: sepia(1) brightness(0.5) contrast(0.7); */
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+/* .post-delete-text {
+  color: grey;
+} */
+/* код по кнопке корзины выше ----------------------------------------------------------------------------------------------------------*/
+
 .user-name {
   font-weight: 500;
 }
