@@ -3,7 +3,7 @@
 const personalKey = "lily";
 const baseHost = "https://webdev-hw-api.vercel.app";
 const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`;
-import { getToken } from "./index.js";
+import { getToken } from "./main.js";
 
 export function getPosts({ token }) {
   return fetch(postsHost, {
@@ -137,10 +137,8 @@ export function deletePost({ id, token }) {
     },
   }).then((response) => {
     if (!response.ok) {
-      throw new Error('Ошибка при удалении поста');
+      throw new Error("Ошибка при удалении поста");
     }
     return response.json();
   });
 }
-
-

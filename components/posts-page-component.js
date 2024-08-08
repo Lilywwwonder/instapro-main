@@ -1,12 +1,18 @@
 import { POSTS_PAGE, USER_POSTS_PAGE } from "../routes.js";
 import { renderHeaderComponent } from "./header-component.js";
-import { posts, goToPage, getToken, token } from "../index.js";
+import { posts, goToPage, getToken, token } from "../main.js";
 import { dislike, like, deletePost } from "../api.js";
-import { user } from "../index.js";
+import { user } from "../main.js";
+// import {
+//   formatDateToRu,
+//   formatDateToUs,
+// } from "../lib/formatDate/formatDate.js"; // добавили время
+import { formatRelativeTime } from "../lib/formatDate/formatDate.js";
 
 export function renderPostsPageComponent({ singleUserMode }) {
   console.log("Актуальный список постов:", posts);
 
+  const country = "ru";
   const appElement = document.getElementById("app");
   const appEl = posts
     .map((post) => {
@@ -38,6 +44,7 @@ export function renderPostsPageComponent({ singleUserMode }) {
         <span class="user-name">${post.user.name}</span>
         ${post.description}
       </p>
+      <p>Пост добавлен: ${formatRelativeTime(post.created_at)}</p>
       <div class="bin">
       <button class="delete-button" data-post-id="${
         post.id
@@ -134,4 +141,3 @@ function initDeleteListener() {
     });
   }
 }
-
