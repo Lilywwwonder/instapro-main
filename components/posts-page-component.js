@@ -3,16 +3,13 @@ import { renderHeaderComponent } from "./header-component.js";
 import { posts, goToPage, getToken, token } from "../main.js";
 import { dislike, like, deletePost } from "../api.js";
 import { user } from "../main.js";
-// import {
-//   formatDateToRu,
-//   formatDateToUs,
-// } from "../lib/formatDate/formatDate.js"; // добавили время
+
 import { formatRelativeTime } from "../lib/formatDate/formatDate.js";
 
 export function renderPostsPageComponent({ singleUserMode }) {
   console.log("Актуальный список постов:", posts);
 
-  const country = "ru";
+  // const country = "ru"; оставить значение?????????????777
   const appElement = document.getElementById("app");
   const appEl = posts
     .map((post) => {
