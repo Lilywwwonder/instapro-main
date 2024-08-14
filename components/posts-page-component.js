@@ -41,7 +41,7 @@ export function renderPostsPageComponent({ singleUserMode }) {
         <span class="user-name">${post.user.name}</span>
         ${post.description}
       </p>
-      <p>Пост добавлен: ${formatRelativeTime(post.created_at)}</p>
+      <p>Пост добавлен: ${formatRelativeTime(post.createdAt)}</p>
       <div class="bin">
       <button class="delete-button" data-post-id="${
         post.id
