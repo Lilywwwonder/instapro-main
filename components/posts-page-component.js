@@ -138,3 +138,40 @@ function initDeleteListener() {
     });
   }
 }
+
+// function initDeleteListener() {
+//   const deleteButtonElements = document.querySelectorAll(".delete-button");
+//   for (const deleteButton of deleteButtonElements) {
+//     deleteButton.addEventListener("click", () => {
+//       const postId = deleteButton.dataset.postId;
+//       const postElement = document.getElementById("post-" + postId);
+
+//       if (!postElement) {
+//         console.error("Пост не найден");
+//         return;
+//       }
+
+//       const postAuthorId = postElement.querySelector(".post-header").dataset.userId;
+//       const currentUserId = user ? user.id : null;
+
+//       // Проверка на автора поста
+//       if (currentUserId !== postAuthorId) {
+//         alert("Вы не можете удалить чужой пост");
+//         return;
+//       }
+
+//       // Удаление поста, если пользователь является автором
+//       deletePost({ id: postId, token: getToken() })
+//         .then(() => {
+//           if (postElement) {
+//             postElement.remove();
+//           }
+//           console.log(`Пост с ID ${postId} удален`);
+//         })
+//         .catch((error) => {
+//           console.error(error);
+//           alert("Не удалось удалить пост");
+//         });
+//     });
+//   }
+// }
