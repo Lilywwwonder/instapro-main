@@ -3,18 +3,15 @@ import { renderHeaderComponent } from "./header-component.js";
 import { posts, goToPage, getToken, token } from "../main.js";
 import { dislike, like, deletePost } from "../api.js";
 import { user } from "../main.js";
+import { sanitizeHtml } from "../helpers.js";
 
 import { formatRelativeTime } from "../lib/formatDate/formatDate.js";
 
 export function renderPostsPageComponent({ singleUserMode }) {
-  console.log("Актуальный список постов:", posts);
-
-  // const country = "ru"; оставить значение?????????????777
   const appElement = document.getElementById("app");
   const appEl = posts
     .map((post) => {
       if (singleUserMode) {
-        console.log(post);
       }
       return `
     <li class="post" id='post-${post.id}'>
@@ -84,10 +81,9 @@ function initLikeListener() {
       const likeAction = isLiked ? dislike : like;
       const token = getToken();
 
-      // Проверяем, есть ли токен авторизации
       if (!token) {
         alert("Пожалуйста, войдите в систему, чтобы ставить лайки");
-        return; // Прерываем выполнение функции, если пользователь не авторизован
+        return;
       }
 
       likeAction({ id: postId, token })
@@ -117,7 +113,6 @@ function initLikeListener() {
   }
 }
 
-// удалить все посты, даже не автора--------------------------------------------------------
 function initDeleteListener() {
   const deleteButtonElements = document.querySelectorAll(".delete-button");
   for (const deleteButton of deleteButtonElements) {
@@ -129,7 +124,6 @@ function initDeleteListener() {
           if (postElement) {
             postElement.remove();
           }
-          console.log("Пост с ID {postId} удален");
         })
         .catch((error) => {
           console.error(error);

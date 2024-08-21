@@ -1,7 +1,6 @@
 module.exports = {
-    entry: "./main.js", // Входной файл, в котором мы пишем свой код
-    output: {
-        filename: "main.js" // Выходной файл, который подключаем к HTML
-					// Обратите внимание, сохранится он по пути "./dist/main.js"
-    }
-}
+  entry: "./main.js", // Входной файл (пишем код)
+  output: {
+    filename: "main.js", // Выходной файл (подключаем к HTML "./dist/main.js")
+  },
+};

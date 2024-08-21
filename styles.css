@@ -93,7 +93,6 @@
   cursor: pointer;
 }
 
-/* внесла правки по кнопке корзины -------------------------------------------------------------------------------------------------*/
 .bin {
   display: flex;
   align-items: center;
@@ -109,7 +108,6 @@
   outline: none;
   cursor: pointer;
   padding-right: 8px;
-  /* filter: sepia(1) brightness(0.5) contrast(0.7); */
 }
 
 button {
@@ -117,11 +115,6 @@ button {
   background: none;
   padding: 0;
 }
-
-/* .post-delete-text {
-  color: grey;
-} */
-/* код по кнопке корзины выше ----------------------------------------------------------------------------------------------------------*/
 
 .user-name {
   font-weight: 500;

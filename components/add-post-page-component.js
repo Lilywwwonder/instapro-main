@@ -6,7 +6,6 @@ import { renderUploadImageComponent } from "./upload-image-component.js";
 export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
   let imageUrl = "";
   const render = () => {
-    // TODO: Реализовать страницу добавления поста
     const appHtml = `
     <div class="page-container">
       <div class="header-container"></div>
@@ -30,7 +29,7 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
       </div>
     </div>`;
 
-    appEl.innerHTML = appHtml; // надо заменить на как в пост пейдж??????
+    appEl.innerHTML = appHtml;
 
     renderHeaderComponent({
       element: document.querySelector(".header-container"),
