@@ -13,11 +13,15 @@ export function renderPostsPageComponent({ singleUserMode }) {
     .map((post) => {
       if (singleUserMode) {
       }
+
+      const sanitizedUserName = sanitizeHtml(post.user.name);
+      const sanitizedDescription = sanitizeHtml(post.description);
+
       return `
     <li class="post" id='post-${post.id}'>
       <div class="post-header" data-user-id="${post.user.id}">
         <img src="${post.user.imageUrl}" class="post-header__user-image">
-        <p class="post-header__user-name">${post.user.name}</p>
+        <p class="post-header__user-name">${sanitizedUserName}</p>
       </div>
       <div class="post-image-container">
         <img class="post-image" src="${post.imageUrl}">
@@ -35,8 +39,8 @@ export function renderPostsPageComponent({ singleUserMode }) {
         }</strong></p>
       </div>
       <p class="post-text">
-        <span class="user-name">${post.user.name}</span>
-        ${post.description}
+        <span class="user-name">${sanitizedUserName}</span>
+        ${sanitizedDescription}
       </p>
       <p>Пост добавлен: ${formatRelativeTime(post.createdAt)}</p>
       <div class="bin">
