@@ -9,6 +9,8 @@ import { formatRelativeTime } from "../lib/formatDate/formatDate.js";
 
 export function renderPostsPageComponent({ singleUserMode }) {
   const appElement = document.getElementById("app");
+  const currentUserId = user?._id;
+
   const appEl = posts
     .map((post) => {
       if (singleUserMode) {
@@ -16,6 +18,7 @@ export function renderPostsPageComponent({ singleUserMode }) {
 
       const sanitizedUserName = sanitizeHtml(post.user.name);
       const sanitizedDescription = sanitizeHtml(post.description);
+      const isAuthor = currentUserId === post.user.id;
 
       return `
     <li class="post" id='post-${post.id}'>
@@ -43,12 +46,16 @@ export function renderPostsPageComponent({ singleUserMode }) {
         ${sanitizedDescription}
       </p>
       <p>Пост добавлен: ${formatRelativeTime(post.createdAt)}</p>
-      <div class="bin">
-      <button class="delete-button" data-post-id="${
-        post.id
-      }"><img src="./assets/images/bin.svg" alt="Удалить"></button>
-      <p class="post-delete-text"><strong>Удалить пост</strong></p>
-      </div>
+      ${
+        isAuthor
+          ? `<div class="bin">
+        <button class="delete-button" data-post-id="${post.id}">
+          <img src="./assets/images/bin.svg" alt="Удалить">
+        </button>
+        <p class="post-delete-text"><strong>Удалить пост</strong></p>
+      </div>`
+          : ""
+      }
     </li>`;
     })
     .join("");
@@ -131,45 +138,8 @@ function initDeleteListener() {
         })
         .catch((error) => {
           console.error(error);
-          alert("Войдите в систему, чтобы удалить пост");
+          alert("Не удалось удалить пост");
         });
     });
   }
 }
-
-// function initDeleteListener() {
-//   const deleteButtonElements = document.querySelectorAll(".delete-button");
-//   for (const deleteButton of deleteButtonElements) {
-//     deleteButton.addEventListener("click", () => {
-//       const postId = deleteButton.dataset.postId;
-//       const postElement = document.getElementById("post-" + postId);
-
-//       if (!postElement) {
-//         console.error("Пост не найден");
-//         return;
-//       }
-
-//       const postAuthorId = postElement.querySelector(".post-header").dataset.userId;
-//       const currentUserId = user ? user.id : null;
-
-//       // Проверка на автора поста
-//       if (currentUserId !== postAuthorId) {
-//         alert("Вы не можете удалить чужой пост");
-//         return;
-//       }
-
-//       // Удаление поста, если пользователь является автором
-//       deletePost({ id: postId, token: getToken() })
-//         .then(() => {
-//           if (postElement) {
-//             postElement.remove();
-//           }
-//           console.log(`Пост с ID ${postId} удален`);
-//         })
-//         .catch((error) => {
-//           console.error(error);
-//           alert("Не удалось удалить пост");
-//         });
-//     });
-//   }
-// }
